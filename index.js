@@ -138,12 +138,7 @@ document.addEventListener('scroll', function(){
 //세계지도 차트 구현
 const url = "https://unpkg.com/world-atlas@2.0.2/countries-50m.json";
 
-fetch('./data/owid-covid-data.json').then(result => result.json()).then((countries) => {
-    const location = Object.keys(countries).filter((value) => value.length === 3);
-    const dataset = new Object();
-    location.map((value) => {
-        dataset[countries[value].location] = countries[value].data[850]?.total_cases_per_million
-    })
+fetch('./data/world-covid-data.json').then(result => result.json()).then((dataset) => {
     fetch(url).then(result => result.json()).then((datapoint) => {
         //나라 뽑아내기
         const countries = ChartGeo.topojson
@@ -156,7 +151,7 @@ fetch('./data/owid-covid-data.json').then(result => result.json()).then((countri
                 label: 'Countries',
                 data: countries.map(country => ({
                     feature: country,
-                    value: country.properties.name.includes("United States") ? dataset["United States"] : (dataset[country.properties.name] !== undefined ? dataset[country.properties.name] : 0)
+                    value: country.properties.name.includes("United States") ? parseInt(dataset["United States"]) : (dataset[country.properties.name] !== undefined ? parseInt(dataset[country.properties.name]) : 0)
                 }))
             }]
         };
