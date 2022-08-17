@@ -146,6 +146,7 @@ fetch('./data/owid-covid-data.json').then(result => result.json()).then((countri
         dataset[countries[value].location] = countries[value].data[850]?.total_cases_per_million
     })
     fetch(url).then(result => result.json()).then((datapoint) => {
+        console.log(datapoint)
         //나라 뽑아내기
         const countries = ChartGeo.topojson
                             .feature(datapoint, datapoint.objects.countries).features;
