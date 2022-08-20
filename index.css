@@ -273,6 +273,14 @@
         width: 100vw;
     }
 
+    .statistics_map{
+        width: 90vw;
+    }
+
+    .prevent{
+        flex-direction: column;
+    }
+
     .prevent_text{
         width: 100vw;
     }
